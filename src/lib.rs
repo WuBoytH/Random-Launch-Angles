@@ -18,7 +18,17 @@ unsafe fn attack_replace(lua_state: u64) {
     l2c_agent.clear_lua_stack();
     for i in 0..36 {
         if i == 4 {
-            let new_angle = sv_math::rand(hash40("fighter"), 368) as u64;
+            let high_low = sv_math::rand(hash40("fighter"), 8);
+            let mut new_angle;
+            if high_low == 0 {
+                new_angle = sv_math::rand(hash40("fighter"), 120) as u64 + 30 + 180;
+            }
+            else {
+                new_angle = sv_math::rand(hash40("fighter"), 188) as u64;
+                if new_angle > 180 {
+                    new_angle += 180;
+                }
+            }
             l2c_agent.push_lua_stack(&mut L2CValue::new_int(new_angle));
         }
         else {
@@ -37,7 +47,17 @@ unsafe fn attack_abs_replace(lua_state: u64) {
     l2c_agent.clear_lua_stack();
     for i in 0..15 {
         if i == 3 {
-            let new_angle = sv_math::rand(hash40("fighter"), 362) as u64;
+            let high_low = sv_math::rand(hash40("fighter"), 8);
+            let mut new_angle;
+            if high_low == 0 {
+                new_angle = sv_math::rand(hash40("fighter"), 120) as u64 + 30 + 180;
+            }
+            else {
+                new_angle = sv_math::rand(hash40("fighter"), 182) as u64;
+                if new_angle > 180 {
+                    new_angle += 180;
+                }
+            }
             l2c_agent.push_lua_stack(&mut L2CValue::new_int(new_angle));
         }
         else {
